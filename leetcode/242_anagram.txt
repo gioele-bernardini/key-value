@@ -1,0 +1,27 @@
+idea => paragono lunghezza, immediato.
+Poi, forniti due input
+stringa 1
+stringa 2
+parso la prima stringa e per ogni lettera la cerco nella seconda. la trovo nella seconda? => la tolgo.
+se non c'e', ritorno FALSE.
+
+idealmente la seconda stringa dovrebbe risultare vuota
+alla fine del programma (ho tolto tutte le lettere!)
+
+
+first_str = 'ciao'
+second_str = 'aoic'
+
+if len(first_str) != len(second_str):
+  return False
+
+for l in first_str:
+  for c in second_str:
+    if l == c:
+      # rimuovo c da second_str
+      # idea facile => second_str.replace(c, '')
+    elif:
+      return False
+
+if len(second_str) == 0:
+  print('All good! ANAGRAMMI')

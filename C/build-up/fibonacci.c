@@ -25,7 +25,7 @@ int fibonacci2(int n) {
 int main() {
     int n, i;
 
-    printf("Inserisci il numero di termini di Fibonacci da generare: ");
+    printf("Insert a number >> ");
     scanf("%d", &n);
 
     printf("Serie di Fibonacci:\n");

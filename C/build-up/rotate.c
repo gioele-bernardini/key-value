@@ -6,7 +6,7 @@
 void rotate(int* array, int len) {
   int temp = array[len-1];
 
-  int i = len - 1;
+  int i = len -1;  // Last element
   for (i; i>0; i--) {
     array[i] = array[i-1];
   }
@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
   for (i=0; i<ARRAY_LEN; i++)
     printf("%d ", array[i]);
 
-  printf("\n\n====================\n\n");
+  printf("\n\n==========\n\n");
 
   int input = atoi(argv[1]), out;
   if (input < 0) {

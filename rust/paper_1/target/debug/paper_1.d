@@ -1,0 +1,1 @@
+/home/gioele/low-stuff/rust/paper_1/target/debug/paper_1: /home/gioele/low-stuff/rust/paper_1/src/lib.rs /home/gioele/low-stuff/rust/paper_1/src/main.rs /home/gioele/low-stuff/rust/paper_1/src/utils/mod.rs

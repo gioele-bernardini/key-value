@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 
 [lib]
-library = { path = "src/lib.rs" }
+name = "paper_1"
+path = "src/lib.rs"

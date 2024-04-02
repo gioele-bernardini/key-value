@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 pub fn string_reverse(s: &str) -> String {
   // s.chars().rev()
   let mut s = s.to_string();
@@ -84,4 +86,65 @@ pub fn lord_farquaad(s: String) -> String {
   }
 
   out
+}
+
+fn get_furniture(map: &HashMap<String, f32>, furniture: String) -> &f32 {
+  return map.get(furniture.as_str()).unwrap_or(&-1.0);
+}
+
+fn get_furniture2(map: &HashMap<String, f32>, furniture: String) -> &f32 {
+  // .get() returns a reference!
+  match map.get(furniture.as_str()) {
+    Some(x) => x, // returned from .get()
+    None => &-1.0,
+  }
+}
+
+// Occhio al valore di ritorno della funzione..
+fn get_furniture3(map: &HashMap<String, f32>, furniture: String) -> f32 {
+  if let Some(x) = map.get(furniture.as_str()) {
+    return x.clone();
+  }
+
+  -1.0
+}
+
+const STRING_TO_APPEND: &str = "foobar";
+
+fn append(s: &mut String) {
+  for c in STRING_TO_APPEND.chars() {
+    // s.push_str(STRING_TO_APPEND)
+    s.push(c);
+  }
+}
+
+pub fn is_armstrong(mut number: i32) -> bool {
+  let mut original = number.clone();
+  let mut digits = Vec::new();
+
+  while number != 0 {
+    digits.push(number % 10);
+    number /= 10;
+  }
+
+  let num_digits = digits.len() as u32;
+  let mut sum = 0;
+  for d in digits {
+    sum += d.pow(num_digits);
+  }
+
+  original == sum
+}
+
+type Matrix = ((i32, i32), (i32, i32));
+
+fn transpose(matrix: Matrix) -> Matrix {
+  let mut trans = matrix;
+
+  let tmp = trans .0 .1;
+
+  trans .0 .1 = trans .1 .0;
+  trans .1 .0 = tmp;
+
+  trans
 }

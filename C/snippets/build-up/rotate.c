@@ -7,7 +7,7 @@ void rotate(int* array, int len) {
   int temp = array[len-1];
 
   int i = len -1;  // Last element
-  for (i; i>0; i--) {
+  for (i; i > 0; i--) {
     array[i] = array[i-1];
   }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-class Solution:
+class solution:
   def convert(self, s: str, numRows: int) -> str:
     if numRows == 1: return s
 
@@ -15,3 +15,8 @@ class Solution:
           res += s[i + increment - 2 * row]
 
     return res
+  
+if __name__ == '__main__':
+  solution = solution()
+  out = solution.convert('PAYPALISHIRING', 4)
+  print(out); print('PINALSIGYAHRPI')

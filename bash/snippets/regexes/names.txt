@@ -1,0 +1,12 @@
+Sachin
+Sourav
+Rahul
+Binod
+Daytime
+ciaone
+sed -indice '/^#\s/d' nome_del_tuo_ciao.txt
+sed -indice '/^\/\/\s/d' nome_del_tuo_ciao.txt
+sed -indice /^[[:space:]]*//.*$/d temp.c
+sed -indice /^[[:space:]]*#.*$/d temp.py
+
+for (int indice = 0; indice<len; indice++)

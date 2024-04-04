@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-class solution:
+class Solution:
   @staticmethod
   def convert(self, s: str, numRows: int) -> str:
     if numRows == 1: return s
@@ -19,6 +19,7 @@ class solution:
   
 if __name__ == '__main__':
   # metodo statico, volendo non serve l'istanza!
-  solution = solution()
+  solution = Solution()
   out = solution.convert('PAYPALISHIRING', 4)
+
   print(out); print('PINALSIGYAHRPI')

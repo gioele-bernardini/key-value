@@ -3,6 +3,14 @@
 
 #define ARRAY_LEN 5
 
+void print_array(int* array, int len) {
+  int i;
+  for (i = 0; i < len; i++)
+    printf("%d", array[i]);
+
+  printf("\n");
+}
+
 void rotate(int* array, int len) {
   int temp = array[len-1];
 
@@ -12,11 +20,7 @@ void rotate(int* array, int len) {
   }
 
   array[0] = temp;
-
-  for (i=0; i<len; i++)
-    printf("%d ", array[i]);
-
-  printf("\n");
+  print_array(array, len);
 }
 
 int main(int argc, char** argv) {

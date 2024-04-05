@@ -1,4 +1,4 @@
----
+
 __Una serie di istruzioni da usare in Vim :)__Advertisement :)__
 
 sed -i '/^[[:space:]]*\/\/.*$/d' name_file.txt

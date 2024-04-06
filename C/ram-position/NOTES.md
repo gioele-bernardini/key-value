@@ -54,7 +54,17 @@ infatti,<br/>
 
 What about a PC which has more than 1 single bank of RAM?<br/>
 ipotizziamo che i banchi siano tutti da 8.. allora mettiamo in modulo l'indirizzo assoluto con 2^31<br/>
-(<u>overflow? faremo il **_modulo_** con 2^31 -1 allora :/</u>)
+(<u>overflow? faremo il **_modulo_** con 2^31 -1 allora :/</u>)<br/>
+
+_Edit:_
+correzione a posteriori => meglio ancora usare gli unsigned, cosi' il bit di segno non c'e' e voliamo allora
+a 2^(31 **+1**) -1.z
 
 
-### 
+## Approccio alla soluzione
+iniziamo a scrivere del codice C.<br/>
+ripetiamo cosa vogliamo fare
+1. dichiarare una variabile **nell'heap**
+2. ottenere il suo indirizzo assoluto
+3. calcolare riga e colonna all'interno della RAM
+4. stampare il grafico della ram (con magari qualche info aggiuntiva e cose simili)

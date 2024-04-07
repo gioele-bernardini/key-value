@@ -1,5 +1,7 @@
 // gcc <file name> -o <program name> -lm
+// sudo apt-get install libgmp3-dev -y
 #include <stdio.h>
+#include <gmp.h>
 #include <math.h>
 
 #define BYTE_AREA ((int)(pow(2, 33) / sizeof(int)))
@@ -12,22 +14,12 @@ R = L / (A / L) => R = L * (L / A) => R = L^2 / A
 Hence, L = sqrt(R * A)
 */
 
-float get_height() {
-  float height = (float) sqrt((double) SIZE_RATIO * BYTE_AREA);
-  printf("Calculated height: %f\n", height);
+int get_height() {
+  int height = sqrt((double) BYTE_AREA / SIZE_RATIO);
 
   return height;
 }
 
 int main() {
-  float height = get_height();
-  printf("Height: %f\n", height);
-  
-  float length = SIZE_RATIO * height;
-  printf("Calculated length: %f\n", length);
-
-  printf("Height * Length: %f\n", height * length);
-  printf("Byte Area: %d\n", BYTE_AREA);
-
   return 0;
 }

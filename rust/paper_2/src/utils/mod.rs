@@ -39,6 +39,7 @@ pub fn split_at_value(slice: &[i32], target: i32)
     if *value == target {
       index_target = index;
       let (left, right) = slice.split_at(index_target + 1);
+
       return Some((left.to_vec(), right.to_vec()));
     }
   }
@@ -46,3 +47,6 @@ pub fn split_at_value(slice: &[i32], target: i32)
   None
 }
 
+// TODO
+pub fn sub_slice(vector: &Vec<i32>, sub_vector: &Vec<i32>)
+-> 

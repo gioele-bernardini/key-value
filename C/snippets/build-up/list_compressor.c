@@ -10,7 +10,7 @@ char* list_compressor(int* array, int len) {
   int i;
   for (i = 1; i < len; i ++) {
     check = array[i];
-    if (array[i] = array[i-1] +1) continue;
+    if (array[i] == (array[i-1] +1)) continue;
 
   out[k] = sprintf(&(out[k++]), "%d", array[i]);
   }

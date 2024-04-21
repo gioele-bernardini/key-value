@@ -54,7 +54,7 @@ int main() {
   printf("\n");
   
   reverse(&head);
-  printf("Reversed linked list >>> \n");
+  printf("Reversed linked list >>>\n");
   print_list(head);
 
   return 0;

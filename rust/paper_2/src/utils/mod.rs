@@ -1,3 +1,5 @@
+use core::slice;
+
 use rand::prelude::*;
 
 pub fn modify_odd(slice: &mut [i32]) {
@@ -47,6 +49,36 @@ pub fn split_at_value(slice: &[i32], target: i32)
   None
 }
 
-// TODO
-pub fn sub_slice(vector: &Vec<i32>, sub_vector: &Vec<i32>)
--> 
+pub fn sub_slice(vector: &Vec<i32>, sub_vector: &Vec<i32>) {
+  let n_cases = vector.len() - sub_vector.len() + 1;
+  let slice_size = sub_vector.len();
+
+  let mut found = false;
+  
+  for i in 0..n_cases {
+    let check = vector.split_at(i).1.split_at(slice_size).0;
+    println!("{:?}", check);
+
+    if check == sub_vector {
+      println!("Found");
+      found = true;
+    }
+  }
+  if !found {
+    println!("Not found");
+  }
+}
+
+pub fn max(v: &[i32]) -> i32 {
+  let mut max = 0;
+
+  for value in v.iter() {
+    if *value > max {
+      max = *value;
+    }
+  }
+
+  max
+}
+
+// TODO: max_recursive

@@ -81,4 +81,65 @@ pub fn max(v: &[i32]) -> i32 {
   max
 }
 
-// TODO: max_recursive
+pub fn max_recursive(v: &[i32]) -> Option<i32> {
+  if v.len() == 0 {
+    return None
+  }
+  if v.len() == 1 {
+    return Some(v[0]);
+  }
+
+  let first = v[0];
+  let rest_max = max_recursive(&v[1..]);
+
+  match rest_max {
+    None => Some(first),
+    Some(max_val) => {
+      if first > max_val {
+        Some(first)
+      } else {
+        Some(max_val)
+      }
+    }
+  }
+}
+
+pub fn swap(v: &mut [i32]) {
+  let temp = v[1];
+
+  v[0] = v[v.len() -1];
+  v[v.len() -1] = temp;
+}
+
+pub fn is_sorted(v: &[i32]) -> bool {
+  let mut temp = v[0];
+
+  for i in 1..v.len() {
+    if v[i] < temp {
+      return false;
+    }
+
+    temp = v[i];
+  }
+
+  return true;
+}
+
+pub fn is_sorted_recursive(v: &[i32]) -> bool {
+  if v.len() <= 1 {
+    return true;
+  }
+
+  if v[0] > v[1] {
+    return false;
+  }
+
+  return is_sorted_recursive(&v[1..]);
+}
+
+pub fn insert_if_longer(v: &mut Vec<String>, s: &String) {
+  if v.len() > 10 {
+    v.push(s.clone());
+  }
+}
+

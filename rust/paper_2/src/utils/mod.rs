@@ -157,7 +157,6 @@ pub fn build_vector(iter: Iter<i32>) -> Vec<&i32> {
 
 fn flip(vector: &mut Vec<i32>, k: usize) {
   let (left, _) = vector.split_at_mut(k +1);
-  
   left.reverse();
 }
 
@@ -169,11 +168,11 @@ fn find_max(vector: &[i32]) -> usize {
       index = i;
     }
   }
-
+  
   index
 }
 
-pub fn pancake_sort(vector: &mut Vec<i32>) {
+fn pancake_sort(vector: &mut Vec<i32>) {
   let mut index = vector.len();
 
   while index > 0 {
@@ -187,5 +186,3 @@ pub fn pancake_sort(vector: &mut Vec<i32>) {
     }
   }
 }
-
-// TODO: Pancake Sort once more!

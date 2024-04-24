@@ -1,3 +1,4 @@
+use std::mem;
 use std::io::{self, Write};
 use std::env::{ self };
 
@@ -39,4 +40,10 @@ fn sum() {
   let sum = A + B;
   println!("The result is => {}", sum);
 }
+
+fn size_of<T>() -> usize {
+  // let size_of_i32 = size_of::<i32>();
+  mem::size_of::<T>()
+}
+
 

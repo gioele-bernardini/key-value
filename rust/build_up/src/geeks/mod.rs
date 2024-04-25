@@ -46,4 +46,11 @@ fn size_of<T>() -> usize {
   mem::size_of::<T>()
 }
 
+fn calculate_compound(principal: i32, time: i32, rate: f64) -> (i32, i32) {
+  let rate = rate / 100.;
+  let amount = (principal as f64 * (1.0 + rate).powi(time)).round() as i32;
 
+  let gain = amount - principal;
+
+  (amount, gain)
+}

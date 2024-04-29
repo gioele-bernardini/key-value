@@ -160,20 +160,3 @@ pub fn build_vector(iter: Iter<i32>) -> Vec<&i32> {
 // TODO: Merge
 
 // TODO: Both
-
-pub enum Operation {
-  Add,
-  Sub,
-  Mul,
-  Div,
-}
-
-pub enum Expression {
-  Number(i32),
-  Operation {
-    left: Box<Expression>,
-    right: Box<Expression>,
-    operation: Operation,
-  }
-}
-

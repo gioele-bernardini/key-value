@@ -1,7 +1,7 @@
 use core::slice;
-use std::slice::Iter;
+use std::{collections::btree_map::Values, slice::Iter};
 
-use rand::prelude::*;
+use rand::{prelude::*, seq::index};
 
 pub fn modify_odd(slice: &mut [i32]) {
   for num in slice.iter_mut() {
@@ -155,4 +155,30 @@ pub fn build_vector(iter: Iter<i32>) -> Vec<&i32> {
   out
 }
 
-// TODO: Pancake Sort
+fn flip(vector: &mut Vec<i32>) {
+
+}
+
+fn find_max(vector: &Vec<i32>) -> usize {
+  let mut index_max: usize = 0;
+
+  for i in 1..vector.len() {
+    if vector[i] > vector[index_max] {
+      index_max = i;
+    }
+  }
+
+  index_max
+}
+
+fn pancake_sort(vector: &mut Vec<i32>) {
+  let mut index = vector.len() -1;
+
+  for value in vector {
+    let index_max = find_max(&vector[0..index +1]);
+    if index_max != index {
+      flip(&mut vector[..index_max]);
+      flip(&mut vector[..index+1]);
+    }
+  }
+}

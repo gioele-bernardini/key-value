@@ -28,6 +28,7 @@ int main(void) {
 
   for (int j = 0; j < trials; ++j) {
     outcomes[(d1 = r_sides()) + (d2 = r_sides())]++;
+
     cout << "Probability\n";
 
     for (int j = 2; j < n_dice * sides +1; ++j) {

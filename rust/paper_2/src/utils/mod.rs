@@ -159,4 +159,10 @@ pub fn build_vector(iter: Iter<i32>) -> Vec<&i32> {
 
 // TODO: Merge
 
-// TODO: Both
+pub fn custom_sort(vector: &mut Vec<i32>) {
+  
+}
+
+pub fn merge(slice1: &[i32], slice2: [i32]) -> Vec<i32> {
+  
+}

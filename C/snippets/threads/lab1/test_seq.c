@@ -2,27 +2,23 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-
 #define ARRAYSIZE 2000000000
 short array[ARRAYSIZE];
 
 int main(void) {
+  unsigned i;
+  
+  struct timeval tv1, tv2;
+  gettimeofday(&tv1, NULL);
 
-    unsigned i;
-    
-    struct timeval  tv1, tv2;
-    gettimeofday(&tv1, NULL);
+  for (i = 0; i < ARRAYSIZE; i++) {
+    array[i] = (i * i) % 100;
+  }
+  
+  gettimeofday(&tv2, NULL);
+  double cpu_time_used = (double)(tv2.tv_usec - tv1.tv_usec) / 1000000 + (double)(tv2.tv_sec - tv1.tv_sec);
+  
+  printf("Elapsed time: took %.3f secs\n", cpu_time_used);
 
-    for (i=0; i<ARRAYSIZE; i++)
-    {
-        array[i]=(i*i)%100;
-    }
-    
-    gettimeofday(&tv2, NULL);
-    double cpu_time_used = (double) (tv2.tv_usec - tv1.tv_usec) / 1000000 + (double) (tv2.tv_sec - tv1.tv_sec);
-    
-    printf("Elapsed time: took %.3f secs\n", cpu_time_used);
-
-    return 0;
+  return 0;
 }
-

@@ -12,6 +12,7 @@
 #include <stdbool.h> 
 #include <omp.h>
 #include <pthread.h>
+#include <sys/wait.h>
 
 #define N 30000000
 #define min(a, b) (((a) < (b)) ? (a) : (b))
@@ -229,7 +230,8 @@ int main(int argc, char* argv[]) {
   // this is required if you want to set the number of thread in the code and not in the shell
   omp_set_dynamic(0);
   // the num_threads specified the omp threads, the reduction clause is useful in the loops that sum onto a specific variable
-#pragma omp parallel for num_threads(n_threads) reduction(+:n_odd, n_fib, n_prime)
+  #pragma omp parallel for num_threads(n_threads) reduction(+:n_odd, n_fib, n_prime)
+
   for (int i = 0; i < N; i++) {
     if (numbers[i] % 2 == 0) {
       n_odd++;
@@ -241,7 +243,7 @@ int main(int argc, char* argv[]) {
       n_fib++;
     }
   }
-  
+    
   gettimeofday(&tv2, NULL);
   cpu_time_used = (double)(tv2.tv_usec - tv1.tv_usec) / 1000000 + (double)(tv2.tv_sec - tv1.tv_sec);
   printf("Results: %d, %d, %d with %d omp threads, took %.3f secs\n", n_odd, n_fib, n_prime, n_threads, cpu_time_used);

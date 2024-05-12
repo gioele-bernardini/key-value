@@ -15,6 +15,7 @@ void* plus_one(void* td) {
   int max = *(int*)td;
   pid_t my_id = gettid();
   int iterations = 0;
+  
   while (count < max) {
     pthread_mutex_lock(&count_lock);
     count = count + 1;

@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 
 #define ARRAYSIZE 2000000000
+
 short array[ARRAYSIZE];
 
 int main(void) {

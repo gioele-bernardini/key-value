@@ -15,6 +15,7 @@ void* plus_one(void* td) {
   int max = *(int*)td;
   pid_t my_id = gettid();
   int iterations = 0;
+  
   while (count < max) {
     count = count + 1;
     FILE *fptr = fopen(FILENAME, "a");

@@ -11,7 +11,6 @@ begin
 end architecture ex1;
 
 
-
 -- Testbench per la And2
 entity TestAnd2 is
 end entity TestAnd2;

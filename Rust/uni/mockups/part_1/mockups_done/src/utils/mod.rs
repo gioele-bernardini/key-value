@@ -136,6 +136,16 @@ impl AirFleet {
   }
 
   fn search_airplane(&self, model: String) -> Result<AirPlaneCompany, String> {
-    
+    for airplane in self.airplanes {
+      if airplane.model == model {
+        return Ok(airplane.company);
+      }
+    }
+
+    Err("No such model found!");
   }
+}
+
+mod hashmaps {
+
 }

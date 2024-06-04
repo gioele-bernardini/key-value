@@ -1,4 +1,4 @@
-use std::fmt::{ Display, Formatter, Result };
+use std::fmt::{ Display, Formatter };
 
 pub fn prev_str(s: &str) -> String {
   let mut out = String::new();
@@ -82,5 +82,28 @@ impl University {
       name: name.to_string(),
       students,
     }
+  }
+
+  fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
+    for (index, s) in self.students.iter().enumerate() {
+      if s.id == id {
+        self.students.remove(index);
+        return Ok(id);
+      }
+    }
+
+    return Result::Err("No such Id found.");
+  }
+}
+
+impl Display for University {
+  fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+    let mut out = String::new();
+
+    for s in self.students {
+      out.push_str(&s.name);
+    }
+
+    write!("{}", out)
   }
 }

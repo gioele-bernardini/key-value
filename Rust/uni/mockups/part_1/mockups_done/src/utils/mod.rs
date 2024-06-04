@@ -67,6 +67,20 @@ impl Student {
 
 impl Display for Student {
   fn fmt(&self, f: &mut Formatter<'_>) -> Result {
-      
+    write!("{} {}", self.name, self.surname)
+  }
+}
+
+struct University {
+  name: String,
+  students: Vec<Student>,
+}
+
+impl University {
+  fn new(name: &str, students: &[Student]) -> Self {
+    Self {
+      name: name.to_string(),
+      students,
+    }
   }
 }

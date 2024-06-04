@@ -107,3 +107,35 @@ impl Display for University {
     write!("{}", out)
   }
 }
+
+enum AirPlaneCompany {
+  Airbus,
+  Boeing,
+}
+
+struct Airplane {
+  company: AirPlaneCompany,
+  model: String,
+}
+
+struct AirFleet {
+  airplanes: Vec<Airplane>,
+}
+
+impl AirFleet {
+  fn remove_boeing(&mut self) {
+    for (index, airplane) in self.airplanes.iter().enumerate() {
+      if airplane.company == AirPlaneCompany::Boeing {
+        self.airplanes.remove(index);
+      }
+    }
+  }
+
+  fn add_airplane(&mut self, airplane: Airplane) {
+    self.airplanes.push(airplane);
+  }
+
+  fn search_airplane(&self, model: String) -> Result<AirPlaneCompany, String> {
+    
+  }
+}

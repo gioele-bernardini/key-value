@@ -42,8 +42,6 @@ pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
   out
 }
 
-use std::fmt::{self, Display, Formatter};
-
 struct Student {
     name: String,
     id: u32,
@@ -100,44 +98,40 @@ impl Display for University {
     }
 }
 
-enum AirPlaneCompany {
-  Airbus,
-  Boeing,
+#[derive(Debug, Clone, PartialEq)]
+enum AirplaneCompany {
+    Airbus,
+    Boeing,
 }
 
+#[derive(Debug, Clone)]
 struct Airplane {
-  company: AirPlaneCompany,
-  model: String,
+    company: AirplaneCompany,
+    model: String,
 }
 
 struct AirFleet {
-  airplanes: Vec<Airplane>,
+    airplanes: Vec<Airplane>,
 }
 
 impl AirFleet {
-  fn remove_boeing(&mut self) {
-    for (index, airplane) in self.airplanes.iter().enumerate() {
-      if airplane.company == AirPlaneCompany::Boeing {
-        self.airplanes.remove(index);
-      }
-    }
-  }
-
-  fn add_airplane(&mut self, airplane: Airplane) {
-    self.airplanes.push(airplane);
-  }
-
-  fn search_airplane(&self, model: String) -> Result<AirPlaneCompany, String> {
-    for airplane in self.airplanes {
-      if airplane.model == model {
-        return Ok(airplane.company);
-      }
+    // Metodo per rimuovere tutti gli aerei Boeing dalla flotta
+    fn remove_boeing(&mut self) {
+        self.airplanes.retain(|airplane| airplane.company != AirplaneCompany::Boeing);
     }
 
-    Err("No such model found!");
-  }
-}
+    // Metodo per aggiungere un aereo alla flotta
+    fn add_airplane(&mut self, airplane: Airplane) {
+        self.airplanes.push(airplane);
+    }
 
-mod hashmaps {
-
+    // Metodo per cercare un aereo per modello
+    fn search_airplane(&self, model: &str) -> Result<AirplaneCompany, String> {
+        for airplane in &self.airplanes {
+            if airplane.model == model {
+                return Ok(airplane.company.clone());
+            }
+        }
+        Err(format!("No such model found!"))
+    }
 }

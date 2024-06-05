@@ -1,4 +1,4 @@
-use std::fmt::{ Display, Formatter };
+use std::fmt::{ self, Display, Formatter };
 
 fn prev_str(input: &str) -> String {
     input.chars().map(|c| {
@@ -42,6 +42,7 @@ pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
   out
 }
 
+#[derive(Clone)]
 struct Student {
     name: String,
     id: u32,
@@ -87,7 +88,7 @@ impl University {
 }
 
 impl Display for University {
-    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut out = format!("University: {}\nStudents:\n", self.name);
 
         for s in &self.students {

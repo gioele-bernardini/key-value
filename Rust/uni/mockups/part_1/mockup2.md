@@ -1,4 +1,4 @@
-### Mockup Midterm 3
+### Mockup Midterm 2
 
 #### Part 1: Multiple Choice on Rust Semantics
 
@@ -6,68 +6,69 @@
 
 ```rust
 fn main() {
-    let s = String::from("hello");
-    let r1 = &s;
-    let r2 = &s;
-    println!("{}, {}", r1, r2);
+    let mut s = String::from("hello");
+    let t = &mut s; // line 3
+    t.push_str(", world!");
+    println!("{}", s);
 }
 ```
 
 Answers:
 1. Yes
-2. No, s is moved
-3. No, r1 is borrowed
-4. No, s does not implement Copy
+2. No, s is borrowed as mutable
+3. No, t cannot be used after s
+4. No, s does not implement the Copy trait
 
 **B: If not, how to fix it?**
 
 Answers:
-1. Replace `let r1 = &s;` with `let r1 = s.clone();`
-2. Replace `let r2 = &s;` with `let r2 = s.clone();`
-3. Change `s` to `mut s`
-4. Add `println!("{}", s);`
+1. Replace line 3 with `let t = &s;`
+2. Replace line 3 with `let t = s.clone();`
+3. Change `mut` to `const` in line 2
+4. Add `let s = String::new();` before line 1
 
 2. **A: Will the following code compile? Why?**
 
 ```rust
 fn main() {
-    let x = 5;
-    let y = &x;
-    println!("{}", y);
-    println!("{}", x);
+    let arr = [1, 2, 3, 4];
+    let slice = &arr[1..3];
+    println!("{:?}", slice);
+    let first = &slice[0];
+    println!("{:?}", arr);
 }
 ```
 
 Answers:
 1. Yes
-2. No, y is moved
-3. No, x is immutable
-4. No, y does not implement Copy
+2. No, slice out of bounds
+3. No, arr is moved
+4. No, slice does not implement Debug
 
 **B: If not, how to fix it?**
 
 Answers:
-1. Replace `let y = &x;` with `let y = x.clone();`
-2. Add `println!("{}", x);` after line 2
-3. Change `x` to `mut x`
-4. Use `y.clone()` in line 3
+1. Replace `slice` with `&arr[..]`
+2. Replace `slice` with `arr`
+3. Add `println!("{:?}", arr);` after line 2
+4. Add `println!("{:?}", slice);` after line 3
 
-3. **A: What is the owner of `v`'s original data at `HERE`?**
+3. **A: What is the owner of `vec`'s original data at `HERE`?**
 
 ```rust
 fn main() {
-    let v = vec![1, 2, 3];
-    let w = &v;
+    let vec = vec![1, 2, 3];
+    let y = vec;
     // HERE
 }
 ```
 
-1. v
-2. w
+1. vec
+2. y
 3. main
 4. none
 
-**B: When is the value of `v` dropped?**
+**B: When is the value of `y` dropped?**
 
 Answers:
 1. After line 1
@@ -75,14 +76,12 @@ Answers:
 3. After line 3
 4. When the scope ends
 
-4. **A
-
-: Will the following code compile? Why?**
+4. **A: Will the following code compile? Why?**
 
 ```rust
 fn foo(vec: Vec<i32>) {
     let x = vec;
-    let y = x.clone();
+    let y = x;
     println!("{:?}", y);
 }
 ```
@@ -153,30 +152,25 @@ Answers:
 
 #### Part 2: Coding Rust Concepts
 
-1. **Write a function `lowercase` that takes a `&str` as input and returns a `String`.**
+1. **Write a function `capitalize` that takes a `&str` as input and returns a `String`.**
    
-   This function should convert all characters to lowercase.
-   
-
-2. **Write a struct `Car` with two fields: `brand` (a `String`) and `year` (an `i32`). Then, implement the following methods for `Car`:**
-
-   - `new`: takes a `&str` and an `i32` and returns a `Car` instance.
-   - `description`: returns a string describing the car.
+   This function should convert the first letter of each word to uppercase.
 
 
-3. **Create a function named `count_words` that takes a `&str` and returns the number of words.**
+2. **Write a struct `Book` with two fields: `title` (a `String`) and `pages` (an `i32`). Then, implement the following methods for `Book`:**
+
+   - `new`: takes a `&str` and an `i32` and returns a `Book` instance.
+   - `description`: returns a string describing the book.
 
 
-4. **Write a struct `Circle` with a single field: `radius` (a `f64`). Implement the following methods for `Circle`:**
-
-   - `new`: takes a `f64` argument and returns a `Circle` instance.
-   - `area`: returns the area of the circle.
+3. **Create a function named `reverse_string` that takes a `String` and returns the reversed `String`.**
 
 
-5. **Write a struct `Teacher` with two fields: `name` (a `String`) and `subject` (a `String`). Then, implement the `Display` trait for `Teacher` to print "Teacher: [name], Subject: [subject]".**
+4. **Write a struct `Rectangle` with two fields: `width` and `height`, both `u32`. Implement the following methods for `Rectangle`:**
+
+   - `new`: takes two `u32` arguments and returns a `Rectangle` instance.
+   - `area`: returns the area of the rectangle.
 
 
-### Mockup Midterm 4
-
-#### Part 1: Multiple Choice on Rust Semantics
+5. **Write a struct `Person` with two fields: `name` (a `String`) and `age` (an `u32`). Then, implement the `Display` trait for `Person` to print "Name: [name], Age: [age]".**
 

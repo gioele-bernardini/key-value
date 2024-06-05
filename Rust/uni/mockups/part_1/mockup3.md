@@ -1,4 +1,4 @@
-### Mockup Midterm 4
+### Mockup Midterm 3
 
 #### Part 1: Multiple Choice on Rust Semantics
 
@@ -75,7 +75,9 @@ Answers:
 3. After line 3
 4. When the scope ends
 
-4. **A: Will the following code compile? Why?**
+4. **A
+
+: Will the following code compile? Why?**
 
 ```rust
 fn foo(vec: Vec<i32>) {
@@ -151,23 +153,30 @@ Answers:
 
 #### Part 2: Coding Rust Concepts
 
-1. **Write a function `count_vowels` that takes a `&str` as input and returns the number of vowels.**
+1. **Write a function `lowercase` that takes a `&str` as input and returns a `String`.**
+   
+   This function should convert all characters to lowercase.
    
 
-2. **Write a struct `Book` with two fields: `title` (a `String`) and `author` (a `String`). Then, implement the following methods for `Book`:**
+2. **Write a struct `Car` with two fields: `brand` (a `String`) and `year` (an `i32`). Then, implement the following methods for `Car`:**
 
-   - `new`: takes two `&str` and returns a `Book` instance.
-   - `description`: returns a string describing the book.
-
-
-3. **Create a function named `is_palindrome` that takes a `String` and returns a `bool` indicating whether the string is a palindrome.**
+   - `new`: takes a `&str` and an `i32` and returns a `Car` instance.
+   - `description`: returns a string describing the car.
 
 
-4. **Write a struct `Triangle` with three fields: `a`, `b`, and `c` (all `f64`). Implement the following methods for `Triangle`:**
-
-   - `new`: takes three `f64` arguments and returns a `Triangle` instance.
-   - `perimeter`: returns the perimeter of the triangle.
+3. **Create a function named `count_words` that takes a `&str` and returns the number of words.**
 
 
-5. **Write a struct `Dog` with two fields: `name` (a `String`) and `breed` (a `String`). Then, implement the `Display` trait for `Dog` to print "Dog: [name], Breed: [breed]".**
+4. **Write a struct `Circle` with a single field: `radius` (a `f64`). Implement the following methods for `Circle`:**
+
+   - `new`: takes a `f64` argument and returns a `Circle` instance.
+   - `area`: returns the area of the circle.
+
+
+5. **Write a struct `Teacher` with two fields: `name` (a `String`) and `subject` (a `String`). Then, implement the `Display` trait for `Teacher` to print "Teacher: [name], Subject: [subject]".**
+
+
+### Mockup Midterm 4
+
+#### Part 1: Multiple Choice on Rust Semantics
 

@@ -1,42 +1,33 @@
 use std::fmt::{ Display, Formatter };
 
-pub fn prev_str(s: &str) -> String {
-  let mut out = String::new();
-
-  for c in s.chars() {
-    if c.is_alphabetic() {
-      if c != 'a' && c != 'A' {
-        out.push((c as u8 -1) as char);
-        continue;
-      }
-    }
-
-    out.push(c);
-  }
-
-  out
+fn prev_str(input: &str) -> String {
+    input.chars().map(|c| {
+        match c {
+            'b'..='z' => (c as u8 - 1) as char,
+            'B'..='Z' => (c as u8 - 1) as char,
+            _ => c,
+        }
+    }).collect()
 }
 
-pub struct X {
-  s: Option<String>,
-  i: i32,
+struct X {
+    s: Option<String>,
+    i: i32,
 }
 
 impl X {
-  fn new(s: &str, i: i32) -> Self {
-    Self {
-      s: Some(s.to_string()),
-      i,
+    // Costruttore per creare una nuova istanza di X
+    fn new(s: &str, i: i32) -> X {
+        X {
+            s: Some(s.to_string()),
+            i,
+        }
     }
-  }
 
-  fn take_str(&mut self) -> Option<String> {
-    let out = self.s.clone();
-
-    self.s = None;
-
-    out
-  }
+    // Metodo per prendere il campo s e sostituirlo con None
+    fn take_str(&mut self) -> Option<String> {
+        self.s.take()
+    }
 }
 
 pub struct NameSurname {
@@ -51,61 +42,62 @@ pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
   out
 }
 
-pub struct Student {
-  name: String,
-  id: u32,
+use std::fmt::{self, Display, Formatter};
+
+struct Student {
+    name: String,
+    id: u32,
 }
 
 impl Student {
-  fn new(name: &str, id: u32) -> Self {
-    Self {
-      name: name.to_string(),
-      id
+    fn new(name: &str, id: u32) -> Self {
+        Self {
+            name: name.to_string(),
+            id,
+        }
     }
-  }
 }
 
 impl Display for Student {
-  fn fmt(&self, f: &mut Formatter<'_>) -> Result {
-    write!("{} {}", self.name, self.surname)
-  }
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "{} (ID: {})", self.name, self.id)
+    }
 }
 
 struct University {
-  name: String,
-  students: Vec<Student>,
+    name: String,
+    students: Vec<Student>,
 }
 
 impl University {
-  fn new(name: &str, students: &[Student]) -> Self {
-    Self {
-      name: name.to_string(),
-      students,
-    }
-  }
-
-  fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
-    for (index, s) in self.students.iter().enumerate() {
-      if s.id == id {
-        self.students.remove(index);
-        return Ok(id);
-      }
+    fn new(name: &str, students: &[Student]) -> Self {
+        Self {
+            name: name.to_string(),
+            students: students.to_vec(),
+        }
     }
 
-    return Result::Err("No such Id found.");
-  }
+    fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
+        for (index, s) in self.students.iter().enumerate() {
+            if s.id == id {
+                return Ok(self.students.remove(index));
+            }
+        }
+
+        Err("No such Id found.")
+    }
 }
 
 impl Display for University {
-  fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-    let mut out = String::new();
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        let mut out = format!("University: {}\nStudents:\n", self.name);
 
-    for s in self.students {
-      out.push_str(&s.name);
+        for s in &self.students {
+            out.push_str(&format!("{}\n", s));
+        }
+
+        write!(f, "{}", out)
     }
-
-    write!("{}", out)
-  }
 }
 
 enum AirPlaneCompany {

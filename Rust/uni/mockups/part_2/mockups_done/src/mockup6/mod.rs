@@ -1,3 +1,4 @@
+use std::fmt::Debug;
 use std::ops::Add;
 
 pub mod odd_module {
@@ -30,3 +31,31 @@ where
     self.clone() + self.clone()
   }
 }
+
+trait Unknown {
+  fn serialize(&self) -> String;
+}
+
+impl Unknown for i32 {
+  fn serialize(&self) -> String {
+    self.to_string()
+  }
+}
+
+
+impl Unknown for String {
+  fn serialize(&self) -> String {
+    self.clone()
+  }
+}
+
+impl<T: Debug> Unknown for Vec<T> {
+  fn serialize(&self) -> String {
+    format!("{:?}", self)
+  }
+}
+
+fn get_vec() -> Vec<Box<dyn Unknown>> {
+  Vec::new()
+}
+

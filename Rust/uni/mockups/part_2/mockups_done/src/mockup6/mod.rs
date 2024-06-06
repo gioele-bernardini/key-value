@@ -42,7 +42,6 @@ impl Unknown for i32 {
   }
 }
 
-
 impl Unknown for String {
   fn serialize(&self) -> String {
     self.clone()
@@ -59,3 +58,8 @@ fn get_vec() -> Vec<Box<dyn Unknown>> {
   Vec::new()
 }
 
+fn print_vec(vec: &Vec<Box<dyn Unknown>>) {
+  for item in vec {
+    println!("{}", item.serialize());
+  }
+}

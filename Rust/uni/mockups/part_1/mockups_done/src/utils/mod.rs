@@ -34,22 +34,24 @@ pub struct X {
 }
 
 impl X {
-  fn new(s: &str, i: i32) -> Self {
+  pub fn new(s: &str, i: i32) -> Self {
     Self {
       s: Some(s.to_string()),
       i,
     }
   }
 
-  fn take_str(&mut self) -> Option<String> {
+  pub fn take_str(&mut self) -> Option<String> {
     self.s.take()
   }
 
-  fn take_str2(&mut self) -> Option<String> {
+  pub fn take_str2(&mut self) -> Option<String> {
     let out = self.s.clone();
     self.s = None;
 
     out    
   }
 }
+
+
 

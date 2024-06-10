@@ -1,3 +1,4 @@
+use core::fmt;
 use std::fmt::Display;
 
 pub fn prev_str(input: &str) -> String {
@@ -68,7 +69,7 @@ pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
   out
 }
 
-fn replace_surname2(mut person: NameSurname, new_surname: String) -> String {
+pub fn replace_surname2(mut person: NameSurname, new_surname: String) -> String {
     let old_surname = person.surname;
     person.surname = new_surname;
     old_surname
@@ -109,7 +110,33 @@ impl University {
   }
 
   pub fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
-    
+    for (index, s) in self.students.iter().enumerate() {
+      if s.id == id {
+        return Ok(self.students.remove(index));
+      }
+    }
+
+    Err("Not found!")
+  }
+  
+  pub fn remove_student2(&mut self, id: u32) -> Result<Student, &str> {
+        if let Some(index) = self.students.iter().position(|student| student.id == id) {
+            Ok(self.students.remove(index))
+        } else {
+            Err("Not found")
+        }
+    }
+}
+
+impl Display for University {
+  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    write!(f, "{}\n\nStudents:", self.name)?;
+
+    for s in &self.students {
+      write!(f, "{}\n", s)?;
+    }
+
+  Ok(())
   }
 }
 

@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 pub fn prev_str(input: &str) -> String {
   input.chars().map(|c|
     if c.is_ascii_alphabetic() {
@@ -53,5 +55,42 @@ impl X {
   }
 }
 
+pub struct NameSurname {
+  name: String,
+  surname: String
+}
 
+pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
+  let out = ns.surname.clone();
+
+  ns.surname = s;
+
+  out
+}
+
+fn replace_surname2(mut person: NameSurname, new_surname: String) -> String {
+    let old_surname = person.surname;
+    person.surname = new_surname;
+    old_surname
+}
+
+pub struct Student {
+  name: String,
+  id: u32
+}
+
+impl Display for Student {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    write!(f, "{} [{}]", self.name, self.id)
+  }
+}
+
+impl Student {
+  pub fn new(name: &str, id: u32) -> Self {
+    Self {
+      name: name.to_string(),
+      id,
+    }
+  }
+}
 

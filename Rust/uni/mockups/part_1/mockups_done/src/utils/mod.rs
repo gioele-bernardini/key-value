@@ -74,6 +74,7 @@ fn replace_surname2(mut person: NameSurname, new_surname: String) -> String {
     old_surname
 }
 
+#[derive(Clone)]
 pub struct Student {
   name: String,
   id: u32
@@ -91,6 +92,24 @@ impl Student {
       name: name.to_string(),
       id,
     }
+  }
+}
+
+pub struct University {
+  name: String,
+  students: Vec<Student>
+}
+
+impl University {
+  pub fn new(name: &str, students: &[Student]) -> Self {
+    Self {
+      name: name.to_string(),
+      students: students.to_vec()
+    }
+  }
+
+  pub fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
+    
   }
 }
 

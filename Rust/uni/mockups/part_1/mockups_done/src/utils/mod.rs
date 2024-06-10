@@ -140,3 +140,21 @@ impl Display for University {
   }
 }
 
+pub enum Company {
+  Airbus,
+  Boeing
+}
+
+pub struct Airplane {
+  company: Company,
+  model: String
+}
+
+pub struct AirFleet {
+  airplanes: Vec<Airplane>
+}
+
+impl AirFleet {
+  // TODO
+}
+

@@ -1,39 +1,16 @@
-use core::fmt;
-use std::fmt::Display;
-
-pub fn prev_str(input: &str) -> String {
-  input.chars().map(|c|
-    if c.is_ascii_alphabetic() {
-      match c {
-        'a' | 'A' => c,
-        'b' ..= 'z' => (c as u8 -1) as char,
-        'B' ..= 'Z' => (c as u8 -1) as char,
-        _ => c,
-      }
-    } else {
-      c
-    }
-  ).collect()
-}
-
-pub fn prev_str2(input: &str) -> String {
-  let mut out = String::new();
-
-  for c in input.chars() {
+pub fn prev_str(s: &str) -> String {
+  s.chars().map(|c| {
     match c {
-      'a' | 'A' => out.push(c),
-      'b' ..= 'z' => out.push((c as u8 -1) as char),
-      'B' ..= 'Z' => out.push((c as u8 -1) as char),
-      _ => out.push(c)
+      'b' ..= 'z' => ((c as u8) -1) as char,
+      'B' ..= 'Z' => ((c as u8) -1) as char,
+      _ => c,
     }
-  }
-
-  out
+  }).collect()
 }
 
 pub struct X {
   s: Option<String>,
-  i: i32
+  i: i32,
 }
 
 impl X {
@@ -48,113 +25,5 @@ impl X {
     self.s.take()
   }
 
-  pub fn take_str2(&mut self) -> Option<String> {
-    let out = self.s.clone();
-    self.s = None;
-
-    out    
-  }
-}
-
-pub struct NameSurname {
-  name: String,
-  surname: String
-}
-
-pub fn replace_surname(ns: &mut NameSurname, s: String) -> String {
-  let out = ns.surname.clone();
-
-  ns.surname = s;
-
-  out
-}
-
-pub fn replace_surname2(mut person: NameSurname, new_surname: String) -> String {
-    let old_surname = person.surname;
-    person.surname = new_surname;
-    old_surname
-}
-
-#[derive(Clone)]
-pub struct Student {
-  name: String,
-  id: u32
-}
-
-impl Display for Student {
-  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-    write!(f, "{} [{}]", self.name, self.id)
-  }
-}
-
-impl Student {
-  pub fn new(name: &str, id: u32) -> Self {
-    Self {
-      name: name.to_string(),
-      id,
-    }
-  }
-}
-
-pub struct University {
-  name: String,
-  students: Vec<Student>
-}
-
-impl University {
-  pub fn new(name: &str, students: &[Student]) -> Self {
-    Self {
-      name: name.to_string(),
-      students: students.to_vec()
-    }
-  }
-
-  pub fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
-    for (index, s) in self.students.iter().enumerate() {
-      if s.id == id {
-        return Ok(self.students.remove(index));
-      }
-    }
-
-    Err("Not found!")
-  }
   
-  pub fn remove_student2(&mut self, id: u32) -> Result<Student, &str> {
-        if let Some(index) = self.students.iter().position(|student| student.id == id) {
-            Ok(self.students.remove(index))
-        } else {
-            Err("Not found")
-        }
-    }
 }
-
-impl Display for University {
-  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-    write!(f, "{}\n\nStudents:", self.name)?;
-
-    for s in &self.students {
-      write!(f, "{}\n", s)?;
-    }
-
-  Ok(())
-  }
-}
-
-pub enum Company {
-  Airbus,
-  Boeing
-}
-
-pub struct Airplane {
-  company: Company,
-  model: String
-}
-
-pub struct AirFleet {
-  airplanes: Vec<Airplane>
-}
-
-impl AirFleet {
-  // TODO
-}
-

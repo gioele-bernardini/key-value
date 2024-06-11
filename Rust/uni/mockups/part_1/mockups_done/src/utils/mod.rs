@@ -95,7 +95,46 @@ impl Display for University {
     }
 }
 
-// TODO: hashmaps and airfleet
+#[derive(PartialEq, Eq, Clone, Copy)]
+pub enum AirplaneCompany {
+  Airbus,
+  Boeing,
+}
+
+#[derive(PartialEq, Eq)]
+pub struct Airplane {
+  company: AirplaneCompany,
+  model: String,
+}
+
+#[derive(PartialEq, Eq)]
+pub struct AirFleet {
+  airplanes: Vec<Airplane>,
+}
+
+impl AirFleet {
+  pub fn remove_boeing(&mut self) {
+    // un ciclo for e' sbagliato (gestione indici!), usa retain
+
+    self.airplanes.retain(|airplane| {
+      airplane.company != AirplaneCompany::Boeing
+    })
+  }
+
+  pub fn add_airplane(&mut self, airplane: Airplane) {
+    self.airplanes.push(airplane);
+  }
+
+  pub fn search_airplane(&self, model: &str) -> Result<AirplaneCompany, String> {
+    for airplane in &self.airplanes {
+      if airplane.model == model {
+        return Ok(airplane.company.clone());
+      }
+    }
+
+    Err("No such airplane found.".to_string())
+  }
+}
 
 pub struct Size {
   width: u32,

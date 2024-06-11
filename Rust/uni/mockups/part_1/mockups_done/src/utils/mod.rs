@@ -203,3 +203,27 @@ pub fn order2(strings: Vec<String>) -> Vec<String> {
   }).collect()
 }
 
+pub mod modx {
+  pub enum X {
+    S(char),
+    C(String),
+  }
+}
+
+pub mod mody {
+  pub enum X {
+    F(f64, usize),
+  }
+}
+
+pub mod modsum {
+  use super::modx::X as X1;
+  use super::mody::X as X2;
+
+  pub fn sum(x1: X1, x2: X2) -> u8 {
+    match (x1, x2) {
+      (X1::S(c), X2::F(f, u)) => c as u8 + (f * u as f64) as u8,
+      (X1::C(s), X2::F(f, u)) => s.len() as u8 + (f * u as f64) as u8,
+    }
+  }
+}

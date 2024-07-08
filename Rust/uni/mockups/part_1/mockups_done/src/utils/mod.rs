@@ -98,13 +98,46 @@ impl University {
 
 impl Display for University {
   fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-    writeln!(f, "University: {}", self.name);
+    // Punti interrogativi per dare errore immediatamente!
+    writeln!(f, "University: {}", self.name)?;
     writeln!(f, "Students:",)?;
     
+    // Prendo il riferimento, non voglio averne il possesso!
     for student in &self.students {
       writeln!(f, " {}", student)?;
     }
 
-    OK(())
+    Ok(())
+  }
+}
+
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
+enum Company {
+  Airbus,
+  Boeing,
+}
+
+#[derive(Clone)]
+struct Airplane {
+  company: Company,
+  model: String,
+}
+
+#[derive(Clone)]
+struct AirFleet {
+  airplanes: Vec<Airplane>,
+}
+
+impl AirFleet {
+  fn new(airplanes: &[Airplane]) -> AirFleet {
+    AirFleet {
+      airplanes: airplanes.to_vec(),
+    }
+  }
+
+  fn remove_boeing(&mut self) {
+    self.airplanes.retain(|airplane|
+    airplane.company != Company::Boeing
+    )
   }
 }

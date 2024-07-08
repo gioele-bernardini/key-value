@@ -1,4 +1,4 @@
-use std::mem::swap;
+use std::{fmt::Display, mem::swap};
 
 fn prev_str(s: &str) -> String {
   s.chars().map(|c|
@@ -24,6 +24,7 @@ impl X {
   }
 
   fn take_str(&mut self) -> Option<String> {
+    // Occhio a ritornare una Option come da firma!
     self.s.take()
   }
 }
@@ -48,11 +49,62 @@ fn replace_surname2(ns: &mut NameSurname, s: String) -> String {
   old_surname
 }
 
+#[derive(Clone)]
 struct Student {
   name: String,
   id: u32,
 }
 
 impl Student {
+  fn new(name: &str, id: u32) -> Student {
+    Student {
+      name: name.to_string(),
+      id,
+    }
+  }
+}
 
+impl Display for Student {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    write!(f, "{} [{}]", self.name, self.id)
+  }
+}
+
+struct University {
+  name: String,
+  students: Vec<Student>,
+}
+
+impl University {
+  fn new(name: &str, students: &[Student]) -> University {
+    University {
+      name: name.to_string(),
+      students: students.to_vec(),
+    }
+  }
+
+  fn remove_student(&mut self, id: u32) -> Result<Student, &str> {
+    // Occhio al metodo .enumerate()!
+    for (index, s) in self.students.iter().enumerate() {
+      if s.id == id {
+        // Rompo il ciclo e ritorno direttamente!
+        return Ok(self.students.remove(index));
+      }
+    }
+
+    Err("No such Id found.")
+  }
+}
+
+impl Display for University {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    writeln!(f, "University: {}", self.name);
+    writeln!(f, "Students:",)?;
+    
+    for student in &self.students {
+      writeln!(f, " {}", student)?;
+    }
+
+    OK(())
+  }
 }

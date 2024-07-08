@@ -136,8 +136,73 @@ impl AirFleet {
   }
 
   fn remove_boeing(&mut self) {
+    // Alternativa ciclo while con incremento condizionale!
     self.airplanes.retain(|airplane|
     airplane.company != Company::Boeing
     )
+  }
+
+  fn add_airplane(&mut self, airplane: Airplane) {
+    self.airplanes.push(airplane);
+  }
+
+  fn search_airplane(&self, model: String) -> Result<Company, String> {
+    for airplane in &self.airplanes {
+      if airplane.model == model {
+        // Clona il valore di ritorno!
+        return Ok(airplane.company.clone());
+      }
+    }
+
+    Err("No such model found.".to_string())
+  }
+}
+
+struct Size {
+  width: u32,
+  height: u32,
+}
+
+impl Size {
+  fn new(width: u32, height: u32) -> Size {
+    Size {
+      width,
+      height,
+    }
+  }
+
+  fn area(&self) -> u32 {
+    self.height * self.width
+  }
+
+  fn compare(&self, size2: Size) -> Option<bool> {
+    if self.area() == size2.area() {
+      return None;
+    } else if self.area() > size2.area() {
+      return Some(true);
+    }
+
+    return Some(false);
+  }
+}
+
+struct MaybePoint {
+  x: Option<i32>,
+  y: Option<i32>,
+}
+
+impl MaybePoint {
+  fn new(x: Option<i32>, y: Option<i32>) -> MaybePoint {
+    MaybePoint {
+      x,
+      y,
+    }
+  }
+
+  fn is_some(&self) -> bool {
+    match (self.x, self.y) {
+      (Some(_), Some(_)) => return true,
+      _ => return false,
+    }
   }
 }

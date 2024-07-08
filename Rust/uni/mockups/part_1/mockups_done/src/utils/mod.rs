@@ -201,8 +201,62 @@ impl MaybePoint {
 
   fn is_some(&self) -> bool {
     match (self.x, self.y) {
+      // Occhio alla sintassi!
       (Some(_), Some(_)) => return true,
       _ => return false,
     }
   }
+
+  fn maybe_len(&self) -> Option<f32> {
+    match (self.x, self.y) {
+      // Occhio alla sintassi, questi valori poi devi usarli!
+      (Some(x), Some(y)) => {
+        let distance = (x.pow(2) as f32 + y.pow(2) as f32).sqrt();
+        Some(distance)
+      }
+      _ => None,
+    }
+  }
+}
+
+fn res1(n: i32) -> Result<i32, String> {
+  if n % 10 == 0 {
+    Ok(n)
+  } else {
+    Err("error".to_string())
+  }
+}
+
+fn res2(result: Result<i32, &str>) -> Result<i32, String> {
+  match result {
+    Ok(n) => {
+      if n % 5 == 0 {
+        Ok(n)
+      } else {
+        Err("error".to_string())
+      }
+    }
+    Err(e) => Err(e.to_string())
+  }
+}
+
+fn wrapper(n: i32) -> Result<i32, String> {
+  // Prima propagazione (primo "check")
+  let res1_result = res1(n)?;
+
+  // Secondo check con input il primo risultato
+  // Se il primo check va male la funzione
+  // Si e' gia' interrotta la riga prima di questa!
+  res2(Ok(res1_result))
+}
+
+fn order(s: Vec<String>) -> Vec<String> {
+  let mut out: Vec<String> = Vec::new();
+
+  for (index, string) in s.iter().enumerate() {
+    let temp = format!("{} - {}", index, string);
+    out.push(temp);
+  }
+
+  out
 }

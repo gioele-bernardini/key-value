@@ -18,6 +18,9 @@ class Neuron {
     // f'(x) = f(x) * (1 - f(x))
     void derive();
 
+    // Setter functions
+    void setVal(double val);    
+
     // Getter functions
     double getVal() {
       return this->val;

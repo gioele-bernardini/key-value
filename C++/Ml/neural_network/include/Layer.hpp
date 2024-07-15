@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <vector>
 #include "Neuron.hpp"
 
 using namespace std;
@@ -15,7 +16,7 @@ class Layer {
     int size;
 
     vector<Neuron *> neurons;
-}
+};
 
 #endif
 

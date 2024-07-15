@@ -2,6 +2,7 @@
 #define _NEURON_HPP_
 
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Neuron {
 
     // Derivative for Sigmoid is
     // f'(x) = f(x) * (1 - f(x))
+    void derive();
 
     // Getter functions
     double getVal() {

@@ -1,3 +1,0 @@
-/home/gioele/low-stuff/C++/Ml/neural_network/build/CMakeFiles/NeuralNetwork.dir
-/home/gioele/low-stuff/C++/Ml/neural_network/build/CMakeFiles/edit_cache.dir
-/home/gioele/low-stuff/C++/Ml/neural_network/build/CMakeFiles/rebuild_cache.dir

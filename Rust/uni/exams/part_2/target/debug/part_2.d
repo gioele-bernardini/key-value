@@ -1,1 +1,0 @@
-/home/gioele/low-stuff/Rust/uni/exams/part_2/target/debug/part_2: /home/gioele/low-stuff/Rust/uni/exams/part_2/src/lib.rs /home/gioele/low-stuff/Rust/uni/exams/part_2/src/main.rs /home/gioele/low-stuff/Rust/uni/exams/part_2/src/utils/mod.rs

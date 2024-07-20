@@ -13,12 +13,12 @@ CODE SEGMENT PARA 'CODE'
   
     MOV AH, 00h ; Set the configuration to video mode
     MOV AL, 13h ; Choose the video mode
-    INT 10h ; Execute the configuration
+    INT 10h     ; Execute the configuration
 
     MOV AH, 0Bh ; Set the configuration
     MOV BH, 00h ; To the background color
     MOV BL, 00h ; Choose black as background color
-    INT 10h ; Execute the configuration
+    INT 10h     ; Execute the configuration
 
     MOV AH, 0Ch ; Set the configuration to writing a pixel
     MOV AL, 0Fh ; Choose white as color

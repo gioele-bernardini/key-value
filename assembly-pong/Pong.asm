@@ -1,5 +1,6 @@
 STACK SEGMENT PARA STACK
-  64 DUP (' ')
+  ; Define Byte (DB), 64 time duplicate (' ')
+  DB 64 DUP (' ')
 STACK ENDS
 
 DATA SEGMENT PARA 'DATA'
@@ -12,7 +13,7 @@ CODE SEGMENT PARA 'CODE'
   
     MOV DL, 'A'
     MOV AH, 6h
-    INT 21
+    INT 21h
 
     RET
   MAIN ENDP

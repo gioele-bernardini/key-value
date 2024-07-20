@@ -1,5 +1,4 @@
 # Ignore executable and object files
-LINK.EXE
 PONG.EXE
 PONG.OBJ
 

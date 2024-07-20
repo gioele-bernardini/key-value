@@ -9,7 +9,12 @@ DATA ENDS
 CODE SEGMENT PARA 'CODE'
 
   MAIN PROC FAR
+  
+    MOV DL, 'A'
+    MOV AH, 6h
+    INT 21
 
+    RET
   MAIN ENDP
 
 CODE ENDS

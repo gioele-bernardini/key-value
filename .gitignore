@@ -1,0 +1,19 @@
+# Ignore executable and object files
+LINK.EXE
+PONG.EXE
+PONG.OBJ
+
+# Ignore Windows system files
+Thumbs.db
+Desktop.ini
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore build directories
+/build/
